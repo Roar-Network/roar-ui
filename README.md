@@ -9,7 +9,7 @@
 [![MIT License][license-shield]][license-url]
 [![Issues][issues-shield]][issues-url]
 [![Pull Request][pull-request]][pull-request-url]
-![Developed with Python][python-shield]
+![Developed with Angular][angular-shield]
 <h1>Roar Web</h1>
 
 </div>
@@ -71,4 +71,4 @@ User interface to Roar Social Network
 [license-url]: https://github.com/Roar-Network/roar-ui/blob/master/LICENSE.txt
 [pull-request]: https://img.shields.io/github/issues-pr/Roar-Network/roar-ui.svg?style=flat
 [pull-request-url]: https://github.com/Roar-Network/roar-ui/pulls
-[python-shield]: https://img.shields.io/badge/developed-Python-yellow?styles=flat&logo=python
+[angular-shield]: https://img.shields.io/badge/developed-Angular-yellow?styles=flat&logo=angular
