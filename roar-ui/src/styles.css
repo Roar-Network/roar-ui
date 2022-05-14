@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: "Roboto Condensed", sans-serif; }
+h1, h2, h3, h4, h5, h6, a, button, span {font-family: 'Lilita One', cursive;}
+
+.scheme-img {
+    user-select: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+.rounded-pill{
+    border-radius: 1rem !important;
+}
