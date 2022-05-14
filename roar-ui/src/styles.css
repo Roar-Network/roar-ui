@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Roboto Condensed", sans-serif; }
+body, p, input { margin: 0; font-family: "Roboto Condensed", sans-serif; }
 h1, h2, h3, h4, h5, h6, a, button, span {font-family: 'Lilita One', cursive;}
 
 .scheme-img {
@@ -15,4 +15,13 @@ h1, h2, h3, h4, h5, h6, a, button, span {font-family: 'Lilita One', cursive;}
 
 .rounded-pill{
     border-radius: 1rem !important;
+}
+
+.btn-primary{
+    background-color: #c8ae00 !important;
+    color: white !important;
+}
+
+.font-yellow{
+    color: #c8ae00 !important;
 }
