@@ -19,6 +19,19 @@ User interface to Roar Social Network
 
 <p align="right"><a href="#top" style="text-decoration: none;">🔼</a></p>
 
+## Usage
+
+Execute the following commands:
+
+```
+cd roar-ui
+ng serve
+```
+
+And open https://localhost:4200 in your browser.
+
+<p align="right"><a href="#top" style="text-decoration: none;">🔼</a></p>
+
 ## Contributors
 
 <table align="center">
