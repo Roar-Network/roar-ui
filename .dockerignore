@@ -1,0 +1,8 @@
+.git
+.github
+./roar-ui/.angular/
+./roar-ui/.vscode
+./roar-ui/node_modules
+./gitignore
+./CONTRIBUTING.md
+roar-ui.tar

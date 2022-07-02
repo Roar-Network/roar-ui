@@ -8,6 +8,7 @@ import { AuthenticatorComponent } from 'src/app/tools/authenticator/authenticato
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  isDarkTheme = () => localStorage.getItem("dark-theme") == "y";
 
   constructor(private loginSheet: MatBottomSheet) { }
 
@@ -15,6 +16,6 @@ export class HomeComponent implements OnInit {
   }
 
   onGetStarted() {
-    this.loginSheet.open(AuthenticatorComponent);
+    this.loginSheet.open(AuthenticatorComponent, {panelClass: this.isDarkTheme() ? ["dark-theme", "mat-app-background"]: "mat-app-background" });
   }
 }

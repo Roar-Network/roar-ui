@@ -1,11 +1,43 @@
-<div id="nav-bar">
-    <div id="nav-bar-content">
-        <div id="nav-bar-left">
-            <h3 class="nav-bar-items" id="nav-bar-brand">Roar</h3>
-        </div>
-        <div id="nav-bar-right">
-            <div class="nav-bar-items" (click)="onLoginClick()">Login</div>
+<div class="mat-app-background" [ngClass]="{'dark-theme': isDarkTheme}">
+    <div id="nav-bar">
+        <div id="nav-bar-content">
+            <div id="nav-bar-left">
+                <h3 class="nav-bar-items no-interact" id="nav-bar-brand"><a class="no-interact" href="/" #tooltip="matTooltip" matTooltip="go to home page"
+                    [matTooltipPosition]="'below'"
+                    matTooltipHideDelay="100" >Roar</a></h3>
+            </div>
+            <div id="nav-bar-right">
+                <div style="margin-right: 10px;">
+                    <mat-slide-toggle #switchDark [checked]="isDarkTheme" [ngClass]="{'mat-checked': isDarkTheme}" (toggleChange)="updateDark(switchDark)" #tooltip="matTooltip" matTooltip="de/activate dark theme"
+                        [matTooltipPosition]="'below'"
+                        matTooltipHideDelay="100" >
+                        <mat-icon id="theme">bedtime</mat-icon>
+                    </mat-slide-toggle>
+                </div>
+                <div class="nav-bar-items" *ngIf="!isLogged;else logout" (click)="onLoginClick()">
+                    <mat-icon #tooltip="matTooltip" matTooltip="Login"
+                        [matTooltipPosition]="'below'"
+                        matTooltipHideDelay="100">
+                        login
+                    </mat-icon>
+                </div>
+                <ng-template #logout>
+                    <a href="/user/me" #tooltip="matTooltip" matTooltip="view profile"
+                        [matTooltipPosition]="'below'"
+                        matTooltipHideDelay="100">
+                            <img mat-card-avatar draggable="false" class="no-interact" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile">
+                    </a>
+                    <div class="nav-bar-items"  (click)="onLogoutClick()">
+                        <mat-icon #tooltip="matTooltip" matTooltip="Logout"
+                            [matTooltipPosition]="'below'"
+                            matTooltipHideDelay="100" >
+                            logout
+                        </mat-icon>
+                    </div>
+                </ng-template>
+            </div>
         </div>
     </div>
+    
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

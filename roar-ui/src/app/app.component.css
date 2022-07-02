@@ -1,12 +1,27 @@
+body,
+.mat-app-background {
+    height: 100% !important;
+}
+.icon-profile {
+    margin-right: 1rem;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
 #nav-bar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     height: 5em;
     z-index: 10;
+    background-color: #c8ae00;
 }
-
+.no-interact {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
 #nav-bar-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -37,4 +52,21 @@
 
 #nav-bar-brand {
     font-size: 1.5em;
+}
+#nav-bar-brand > a {
+    color: white;
+    text-decoration: none;
+    text-decoration-color: white;
+}
+
+p, textarea, span, input, div, h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+:host ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #755f00 ;
+}
+
+:host ::ng-deep  .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #a28400 ;
 }

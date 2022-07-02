@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePostComponent } from 'src/app/tools/create-post/create-post.component';
+import {getIP}  from 'src/app/tools/system-network';
+
+@Component({
+  selector: 'app-post-feed',
+  templateUrl: './post-feed.component.html',
+  styleUrls: ['./post-feed.component.css']
+})
+export class PostFeedComponent implements OnInit {
+  isDarkTheme: boolean = localStorage.getItem("dark-theme") == "y";
+  alias: string = localStorage.getItem("alias") || "";
+  username: string = localStorage.getItem("username") || "";
+  constructor() { }
+
+  ngOnInit(): void {
+    getIP();
+  }
+
+
+}

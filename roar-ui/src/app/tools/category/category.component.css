@@ -1,0 +1,20 @@
+#category{
+    display: flex;
+    color: #c8a300;
+    font-size: medium;
+}
+#category .category-name{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  !important;
+    padding-top: 0.3em;
+    margin-left: 0.3em;
+    font-size: 0.8rem;
+    color: gray;
+}
+mat-icon{
+    font-size: 1.2rem;
+}
+.no-interact {
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
