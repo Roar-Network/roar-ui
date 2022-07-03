@@ -3,6 +3,9 @@
     height: 5rem;
     border-radius: 50%;
 }
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #c8a300;
+}
 .content,
 ::ng-deep .mat-tab-label .mat-tab-label-content,
 mat-card,

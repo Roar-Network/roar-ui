@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import encrypt from "../encrypt";
-import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,29 +15,31 @@ export class AuthenticatorComponent implements OnInit {
 
   state = AuthStates.LOGIN;
   resetForm = this.fb.group({
-    answer1: [''],
-    answer2: [''],
-    alias: [''],
-    new_password: ['']
+    answer1: ['', Validators.required],
+    answer2: ['', Validators.required],
+    alias: ['', Validators.required],
+    new_password: ['', Validators.required]
   });
   loginForm = this.fb.group({
-    alias: [''],
-    password: ['']
+    alias: ['', Validators.required],
+    password: ['', Validators.required]
   });
   createForm = this.fb.group({
-    alias: [''],
-    password: [''],
-    username: [''],
-    answer1: [''],
-    answer2: ['']
+    alias: ['', Validators.required],
+    password: ['', Validators.required],
+    username: ['', Validators.required],
+    answer1: ['', Validators.required],
+    answer2: ['', Validators.required]
   });
   isDarkTheme: boolean = localStorage.getItem("dark-theme") == "y" || false;
 
-  constructor(public fb: FormBuilder, private router: Router, public dialog: MatDialog) {}
+  constructor(public fb: FormBuilder, private router: Router, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void { }
   
   onCreateSubmit(){
+    if (this.createForm.invalid)
+      return;
     let alias =  encodeURIComponent(this.createForm.controls["alias"].value);
     let username = encodeURIComponent(this.createForm.controls['username'].value);
     let password = encodeURIComponent(encrypt(this.createForm.controls['password'].value));
@@ -47,24 +48,38 @@ export class AuthenticatorComponent implements OnInit {
 
     // TODO: handle response of create user api request
     fetch(
-      "http://172.27.5.2:32020/create_user?username=" + username + "&password=" + password + "&alias=" + alias + "&a1=" + answer1 + "&a2=" + answer2, 
+      `http://${environment.IP}:${environment.port}/create_user?username=` + username + "&password=" + password + "&alias=" + alias + "&a1=" + answer1 + "&a2=" + answer2, 
       {
         method: "PUT", 
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         }
       }
     )
     .then(r => {
-      if (r.status == 200)
-        return r.json();
-      Swal.fire("account created", "", "success");
-      return r.json();
+      if (r.status != 200)
+      {
+        this._snackBar.open("Registration failed!", "🚨", {
+          horizontalPosition: "start",
+          verticalPosition: "bottom",
+          duration: 2000,  
+        });
+      }
+      else this.state = AuthStates.LOGIN;
     })
-    .then(r => console.log(r));
+    .catch(e => {
+      this._snackBar.open("No connection to server!", "🙈", {
+        horizontalPosition: "start",
+        verticalPosition: "bottom",
+        duration: 2000,  
+      });
+    });
   }
 
   onLoginSubmit(){
+    if (this.loginForm.invalid)
+      return;
     // get datas from login form
     let alias = encodeURIComponent(this.loginForm.controls["alias"].value);
     let password = encodeURIComponent(encrypt(this.loginForm.controls["password"].value));
@@ -81,11 +96,21 @@ export class AuthenticatorComponent implements OnInit {
         // if status code is 200 then we are good
         if(res.status == 200)
           return res.json()
-        else 
-          // TODO finish
-          // this.dialog.open();
-          return null;
-
+        else if(res.status == 401){
+          this._snackBar.open("Wrong credentials!", "🔒", {
+            horizontalPosition: "start",
+            verticalPosition: "bottom",
+            duration: 2000,  
+          });
+        }
+        else {
+          this._snackBar.open("Unexpected error!", "🚨", {
+            horizontalPosition: "start",
+            verticalPosition: "bottom",
+            duration: 2000,  
+          });
+        }
+        return null;
       })
       .then(res => {
         if (res != null){
@@ -109,16 +134,21 @@ export class AuthenticatorComponent implements OnInit {
         }
         else{
           this.unAuth();
-          // TODO: show error message in frontend 
         }
       })
       .catch(err => {
         this.unAuth();
-        // TODO: show error message in frontend 
+        this._snackBar.open("No connection to server!", "🙈", {
+          horizontalPosition: "start",
+          verticalPosition: "bottom",
+          duration: 2000,  
+        });
       });
   }
 
   onResetSubmit(){ 
+    if (this.resetForm.invalid)
+       return;
     let alias = encodeURIComponent(this.resetForm.controls["alias"].value);
     let answer1 = encodeURIComponent(encrypt(this.resetForm.controls["answer1"].value));
     let answer2 = encodeURIComponent(encrypt(this.resetForm.controls["answer2"].value));
@@ -130,7 +160,8 @@ export class AuthenticatorComponent implements OnInit {
   
   unAuth(){ 
     console.log("NOK: Unauthorized");
-    localStorage.setItem("token", ""); 
+    localStorage.clear(); 
+    localStorage.setItem("dark-theme",  this.isDarkTheme ? "y" : "n");
   }
 
   onForgot(){ this.state = AuthStates.FORGOT_PASSWORD; }

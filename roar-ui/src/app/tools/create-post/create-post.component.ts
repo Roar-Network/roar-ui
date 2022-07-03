@@ -2,6 +2,8 @@ import { Component, Inject, Input, NgModule, OnInit, Output, SimpleChange } from
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
+import { environment } from 'src/environments/environment';
+import { UserInfo } from '../user-info';
 
 @Component({
   selector: 'app-create-post',
@@ -12,7 +14,7 @@ export class CreatePostComponent implements OnInit {
   @Input() reply: string = "";
   @Input() replyToAlias: string = "";
   @Output() public onClose = new EventEmitter();
-  alias: string = localStorage.getItem("alias") || ""; 
+  current_usr: UserInfo = {alias: localStorage.getItem("alias") || "", username: localStorage.getItem("username") || ""};
   isDarkTheme: boolean = localStorage.getItem("dark-theme") == "y" || false;
 
   constructor(private router: Router, private _snackBar: MatSnackBar) 
@@ -27,19 +29,36 @@ export class CreatePostComponent implements OnInit {
     if (token != "" && token != null){
 
       // TODO handle response from send post to db
-      fetch("http://172.27.5.3:32020/me/post?content=" + encodeURIComponent(content) + "&reply=" + encodeURIComponent(this.reply)  , {
+      fetch(`http://${environment.IP}:${environment.port}/me/post?content=` + encodeURIComponent(content) + "&reply=" + encodeURIComponent(this.reply)  , {
         method: "POST",
         headers: {
           "Accept": "application/json",
-          "Authorization": localStorage.getItem("token") || ""
+          "Authorization": `${localStorage.getItem("token")}`
         }
       })
-      this.onClose.emit("CLOSE");
-      this._snackBar.open("Post sent!", "✅", {
-        horizontalPosition: "start",
-        verticalPosition: "bottom",
-        duration: 1000,  
-      });
+      .then(r => {
+        if (r.status == 200){
+          this._snackBar.open("Post sent!", "Close", {
+            duration: 2000,
+            verticalPosition: "bottom",
+            horizontalPosition: "start"}
+          );
+          this.onClose.emit("CLOSE");
+        }
+        else{
+          this._snackBar.open("Error sending post!", "Close", {
+            duration: 2000,
+            verticalPosition: "bottom",
+            horizontalPosition: "start"
+          });
+        }
+      })
+      .catch(e => {
+        this._snackBar.open("Error sending post!", "Close", {
+          duration: 2000,
+          verticalPosition: "bottom",
+          horizontalPosition: "start"});
+      })
     }
     else {
       this.onClose.emit("CLOSE");

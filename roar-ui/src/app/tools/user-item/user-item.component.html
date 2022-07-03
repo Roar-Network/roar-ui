@@ -1,18 +1,18 @@
 <mat-card>
     <mat-card-header>
-        <img mat-card-avatar draggable="false" class="no-interact" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile">
-        <mat-card-title class="no-interact"><a class="link no-interact" href="/user/{{alias}}">{{username}}</a></mat-card-title>
-        <mat-card-subtitle class="no-interact">@{{alias}}</mat-card-subtitle>
-        <div class="fill"></div>
-        <mat-icon [ngClass]="{'active': following}" (click)="onUnfollow()" *ngIf="following" #tooltip="matTooltip" matTooltip="unfollow this user"
+        <img mat-card-avatar draggable="false" class="no-interact" src="https://i.pravatar.cc/150?u={{usr.alias}}" class="icon-profile" alt="img of profile">
+        <mat-card-title class="no-interact"><a class="link no-interact" href="/user/{{usr.alias}}">{{username}}</a></mat-card-title>
+        <mat-card-subtitle class="no-interact">@{{usr.alias}}</mat-card-subtitle>
+        <!-- <div class="fill"></div> 
+        ss<mat-icon [ngClass]="{'active': following}" (click)="onUnfollow()" *ngIf="following" #tooltip="matTooltip" matTooltip="unfollow this user"
             [matTooltipPosition]="'below'"
             matTooltipHideDelay="100">
             person_remove
         </mat-icon>
-            <mat-icon  (click)="onFollow()" *ngIf="!following"  #tooltip="matTooltip" matTooltip="start following this user"
-                [matTooltipPosition]="'below'"
-                matTooltipHideDelay="100">
-                person_add
-            </mat-icon>
+        <mat-icon  (click)="onFollow()" *ngIf="!following"  #tooltip="matTooltip" matTooltip="start following this user"
+            [matTooltipPosition]="'below'"
+            matTooltipHideDelay="100">
+            person_add
+        </mat-icon> -->
     </mat-card-header>
 </mat-card>

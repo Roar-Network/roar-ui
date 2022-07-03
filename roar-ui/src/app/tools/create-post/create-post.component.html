@@ -1,7 +1,7 @@
 <mat-card class="mat-app-background" [ngClass]="{'dark-theme' : isDarkTheme }">
     <mat-card-header>
-      <img mat-card-avatar class="no-interact" draggable="false" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile">  
-      <mat-card-title class="no-interact">{{alias}}</mat-card-title>
+      <img mat-card-avatar class="no-interact" draggable="false" src="https://i.pravatar.cc/150?u={{current_usr.alias}}" class="icon-profile" alt="img of profile">  
+      <mat-card-title class="no-interact">{{current_usr.alias}}</mat-card-title>
       <mat-card-subtitle class="no-interact" *ngIf="reply == ''">Create a new post</mat-card-subtitle>
       <mat-card-subtitle *ngIf="reply != ''">Reply a post of <a class="reply-link no-interact" tabindex="-1" href="/user/{{replyToAlias}}">{{replyToAlias}}</a></mat-card-subtitle>
     </mat-card-header>

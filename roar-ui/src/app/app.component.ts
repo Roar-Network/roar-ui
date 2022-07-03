@@ -40,9 +40,7 @@ export class AppComponent {
   }
 
   onLogoutClick(){
-    localStorage.setItem("token", "");
-    localStorage.setItem("alias", "");
-    localStorage.setItem("username", "");
+    localStorage.clear();
     localStorage.setItem("dark-theme", "n");
     this.router.navigate(["/"]).then(() => window.location.reload());
   }

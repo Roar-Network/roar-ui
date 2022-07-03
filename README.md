@@ -21,14 +21,15 @@ User interface to Roar Social Network
 
 ## Usage
 
-Execute the following commands:
+Before execute the server you must open file `./src/environment/environment.ts` and put your known IP of API, in IP field. Then, execute the following commands:
 
 ```
-cd roar-ui
-ng serve
+docker build ./ -t roar/ui
+docker run -it --rm --network=<your-docker-net> --ip=<ip-in-range> roar/ui
+ng serve --host 0.0.0.0
 ```
 
-And open https://localhost:4200 in your browser.
+And open `https://<ip-container>:4200` in your browser.
 
 <p align="right"><a href="#top" style="text-decoration: none;">🔼</a></p>
 

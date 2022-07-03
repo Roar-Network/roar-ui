@@ -8,7 +8,6 @@ import { MatButtonModule } from "@angular/material/button";
 import {  MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatCardModule } from "@angular/material/card";
 import { AuthenticatorComponent } from './tools/authenticator/authenticator.component';
-import { ProfileComponent } from './tools/profile/profile.component';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
 import { PostFeedComponent } from './pages/post-feed/post-feed.component';
@@ -25,9 +24,10 @@ import { ButtonPostComponent } from './tools/button-post/button-post.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTabsModule } from "@angular/material/tabs";
-import { MatDividerModule } from "@angular/material/divider";
 import { UserItemComponent } from './tools/user-item/user-item.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -35,7 +35,6 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     AppComponent,
     HomeComponent,
     AuthenticatorComponent,
-    ProfileComponent,
     PostFeedComponent,
     CreatePostComponent,
     PostComponent,
@@ -62,7 +61,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     MatTooltipModule,
     MatGridListModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
