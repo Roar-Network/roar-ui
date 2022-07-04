@@ -1,0 +1,128 @@
+
+<mat-grid-list cols="6" rowHeight="91vh">
+    <mat-grid-tile [colspan]="1"></mat-grid-tile>
+    <mat-grid-tile [colspan]="4">
+        <mat-card>
+            <div *ngIf="loadData < 5" style="display:flex; justify-content: center; padding-top: 5rem;" >
+                <mat-progress-spinner class="example-margin"
+                    [color]="'#c8a300'"
+                    [mode]="'indeterminate'"
+                    [diameter]="30">
+                </mat-progress-spinner>
+                <p style="margin-left: 1rem">Loading</p>
+            </div>
+            <div  *ngIf="loadData >= 5">
+                <mat-card-header>
+                    <img  class="no-interact" draggable="false" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile"> 
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="meta-info">
+                        <h3 class="no-interact meta-data">{{username}}</h3>
+                        <div *ngIf="!isMe" style="margin-left: 1rem; padding-top: .5rem;">
+                            <mat-icon [ngClass]="{'active': isFollowing}" (click)="onUnfollow()" *ngIf="isFollowing" #tooltip="matTooltip" matTooltip="unfollow this user"
+                                [matTooltipPosition]="'below'"
+                                matTooltipHideDelay="100">
+                                person_remove
+                            </mat-icon>
+                            <mat-icon  (click)="onFollow()" *ngIf="!isFollowing"  #tooltip="matTooltip" matTooltip="start following this user"
+                                [matTooltipPosition]="'below'"
+                                matTooltipHideDelay="100">
+                                person_add
+                            </mat-icon>
+                        </div>
+                        <br/>
+                        <p class="no-interact meta-data">@{{alias}}</p>
+                    </div>
+                    <div class="d-flex d-center mb-1">
+                        <p class="no-interact m-r-20px">{{count_followers()}} followers</p>
+                        <p class="no-interact">{{count_followings()}} followings</p>
+                    </div>
+                    <div id="tabs-content">
+                        <mat-tab-group mat-align-tabs="center" animationDuration="0ms" [selectedIndex]="tabSelected">
+                            <mat-tab label="Posts" >
+                                <div class="scroll content">
+                                    <p *ngIf="this.posts.length == 0">No posts yet 📝</p>
+                                    <div *ngFor="let p of this.posts">
+                                        <post
+                                            [postId]="p.id"
+                                            [author]="p.author"
+                                            [text]="p.text"
+                                            [username]="p.username"
+                                            [date]="p.date"
+                                            [countFav]="p.count_fav"
+                                            [countComment]="p.count_comment"
+                                            [countShare]="p.count_share"
+                                            [fav]="p.fav"
+                                            [share]="p.share"
+                                        ></post>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Shares">
+                                <div  class="scroll content">
+                                    <p *ngIf="this.shares.length == 0">No shares yet 🔁</p>
+                                    <div *ngFor="let p of this.shares">
+                                        <post
+                                        [postId]="p.id"
+                                        [author]="p.author"
+                                        [text]="p.text"
+                                        [username]="p.username"
+                                        [date]="p.date"
+                                        [countFav]="p.count_fav"
+                                        [countComment]="p.count_comment"
+                                        [countShare]="p.count_share"
+                                        [fav]="p.fav"
+                                        [share]="true"
+                                        ></post>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Likes">
+                                <div class="scroll content">
+                                    <p *ngIf="this.likes.length == 0">No likes yet ❤️</p>
+                                    <div *ngFor="let p of this.likes">
+                                        <post
+                                            [postId]="p.id"
+                                            [author]="p.author"
+                                            [text]="p.text"
+                                            [username]="p.username"
+                                            [date]="p.date"
+                                            [countFav]="p.count_fav"
+                                            [countComment]="p.count_comment"
+                                            [countShare]="p.count_share"
+                                            [fav]="true"
+                                            [share]="p.share"
+                                        ></post>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Followings">
+                                <div class="scroll content">
+                                    <p *ngIf="this.followings.length == 0">No followings yet 👥</p>
+                                    <div *ngFor="let u of this.followings">
+                                        <user-item
+                                            [username]="u.username"
+                                            [alias]="u.alias"
+                                        ></user-item>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Followers">
+                                <div class="scroll content">
+                                    <p *ngIf="this.followers.length == 0">No followers yet 👥</p>
+                                    <div *ngFor="let u of this.followers">
+                                        <user-item
+                                            [username]="u.username"
+                                            [alias]="u.alias"
+                                        ></user-item>
+                                    </div>
+                                </div>
+                            </mat-tab>
+                        </mat-tab-group>
+                    </div>
+                </mat-card-content>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1"></mat-grid-tile>
+</mat-grid-list>

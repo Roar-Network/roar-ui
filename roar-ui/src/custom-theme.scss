@@ -1,0 +1,46 @@
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$roar-ui-primary: mat.define-palette(mat.$indigo-palette);
+$roar-ui-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$roar-ui-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$roar-ui-light-theme: mat.define-light-theme((
+  color: (
+    primary: $roar-ui-primary,
+    accent: $roar-ui-accent,
+    warn: $roar-ui-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($roar-ui-light-theme);
+
+
+// for dark theme
+
+$roar-ui-primary-dark: mat.define-palette(mat.$pink-palette);
+$roar-ui-accent-dark: mat.define-palette(mat.$blue-grey-palette);
+$roar-ui-warn-dark: mat.define-palette(mat.$red-palette);
+
+$roar-ui-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $roar-ui-primary-dark,
+    accent: $roar-ui-accent-dark,
+    warn: $roar-ui-warn-dark,
+  )
+));
+
+.dark-theme {
+  @include mat.all-component-themes($roar-ui-dark-theme);
+}

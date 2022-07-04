@@ -1,0 +1,25 @@
+<div id="main">
+    <mat-grid-list cols="12" rowHeight="91vh">
+        <mat-grid-tile [colspan]="3"></mat-grid-tile>
+        <mat-grid-tile [colspan]="6">
+            <div class="scroll">
+                <div *ngFor="let p of this.feed">
+                    <post
+                        [postId]="p.id"
+                        [author]="p.author"
+                        [text]="p.text"
+                        [username]="p.username"
+                        [date]="p.date"
+                        [countFav]="p.count_fav"
+                        [countComment]="p.count_comment"
+                        [countShare]="p.count_share"
+                        [fav]="p.fav"
+                        [share]="p.share"
+                    ></post>
+                </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="3"></mat-grid-tile>
+    </mat-grid-list>
+   
+</div>

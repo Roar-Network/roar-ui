@@ -1,0 +1,83 @@
+<mat-card id="auth-content"   [ngClass]="{'dark-theme' : isDarkTheme }">
+    <mat-card-header>
+        <mat-card-title>
+            <p>Authenticator</p>
+        </mat-card-title>
+    </mat-card-header>
+    <div *ngIf="isAuthState(0)">
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" novalidate>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Alias</mat-label>
+                <input matInput formControlName="alias" type="text" placeholder="alias ex: atp-ariel">
+                <mat-error class="no-interact" *ngIf="loginForm.controls['alias'].invalid">Alias is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Password</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="password">
+                <mat-error class="no-interact"*ngIf="loginForm.controls['password'].invalid">Password is required</mat-error>
+            </mat-form-field>
+            <button mat-flat-button type="submit" color="basic" class="rounded-pill btn-primary">Login</button>
+        </form>
+    </div>
+    <div *ngIf="isAuthState(1)">
+        <form [formGroup]="createForm" (ngSubmit)="onCreateSubmit()" novalidate>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Alias</mat-label>
+                <input matInput formControlName="alias" type="text" placeholder="alias ex: atp-ariel">
+                <mat-error class="no-interact"*ngIf="createForm.controls['alias'].invalid">Alias is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Username</mat-label>
+                <input matInput formControlName="username" type="text" placeholder="username ex: Ariel Triana">
+                <mat-error class="no-interact"*ngIf="loginForm.controls['alias'].invalid">Username is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Password</mat-label>
+                <input matInput formControlName="password" type="password" placeholder="password">
+                <mat-error class="no-interact"*ngIf="createForm.controls['password'].invalid">Password is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">What is your favorite film?</mat-label>
+                <input matInput formControlName="answer1" type="text" placeholder="what is your favorite film?">
+                <mat-error class="no-interact"*ngIf="createForm.controls['answer1'].invalid">This question is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">What is your favorite musician?</mat-label>
+                <input matInput formControlName="answer2" type="text" placeholder="what is your favorite musician?">
+                <mat-error class="no-interact"*ngIf="createForm.controls['answer2'].invalid">This question is required</mat-error>
+            </mat-form-field>
+            <button mat-flat-button type="submit" color="basic" class="rounded-pill btn-primary" >Create</button>
+        </form>
+    </div>
+    <div *ngIf="isAuthState(2)">
+        <form [formGroup]="resetForm" (ngSubmit)="onResetSubmit()" novalidate>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Alias</mat-label>
+                <input matInput formControlName="alias" type="text" placeholder="alias ex: atp-ariel">
+                <mat-error class="no-interact"*ngIf="resetForm.controls['alias'].invalid">Alias is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">Password</mat-label>
+                <input matInput formControlName="new_password" type="password" placeholder="password">
+                <mat-error class="no-interact"*ngIf="resetForm.controls['new_password'].invalid">Password is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">What is your favorite film?</mat-label>
+                <input matInput formControlName="answer1" type="text" placeholder="what is your favorite film?">
+                <mat-error class="no-interact"*ngIf="resetForm.controls['answer1'].invalid">This question is required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label class="no-interact">What is your favorite musician?</mat-label>
+                <input matInput formControlName="answer2" type="text" placeholder="what is your favorite musician?">
+                <mat-error class="no-interact"*ngIf="resetForm.controls['answer2'].invalid">This question is required</mat-error>
+            </mat-form-field>
+            <button mat-flat-button type="submit"  color="basic" class="rounded-pill btn-primary">Reset</button>
+        </form>
+    </div>
+    <mat-card-actions align="end">
+        <button mat-flat-button class="font-yellow" (click)="onForgot()">Forgot password</button>
+        <button mat-flat-button class="font-yellow" (click)="onCreate()">Create an account</button>
+        <button mat-flat-button class="font-yellow" (click)="onLogin()">Login</button>
+    </mat-card-actions>
+</mat-card>

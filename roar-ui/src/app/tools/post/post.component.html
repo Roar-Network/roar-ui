@@ -1,0 +1,34 @@
+<mat-card>
+    <post-category [index]="category"></post-category>
+    <mat-card-header>
+        <img mat-card-avatar draggable="false" class="no-interact" src="https://i.pravatar.cc/150?u={{authorName}}" class="icon-profile" alt="img of profile">
+        <mat-card-title class="no-interact"><a class="link no-interact" href="/user/{{authorName}}">{{username}}</a></mat-card-title>
+        <mat-card-subtitle class="no-interact">{{published}}</mat-card-subtitle>
+        <div class="fill"></div>
+        <mat-icon class="remove" (click)="onDelete()" *ngIf="isYours"#tooltip="matTooltip" matTooltip="delete post"
+            [matTooltipPosition]="'below'"
+            matTooltipHideDelay="100">
+            delete
+        </mat-icon>
+    </mat-card-header>
+    <mat-card-content>
+        <p id="body">{{postText}}</p>
+    </mat-card-content>
+    <mat-card-footer class="d-flex justify-content-between" >
+        
+        <div (click)="onComment()" class="d-flex reaction" id="comment">
+            <mat-icon>chat_bubble_outline</mat-icon>
+            <p  class="counter">{{countCommentLit()}}</p>
+        </div>
+
+        <div (click)="onShare()" [ngClass]="{'active': share}" class="d-flex reaction" id="share">
+            <mat-icon>share_outline</mat-icon>
+            <p  class="counter">{{countShareLit()}}</p>
+        </div>
+        
+        <div (click)="onLike()" [ngClass]="{'active': fav}" class="d-flex reaction" id="fav">
+            <mat-icon >favorite_outline</mat-icon>
+            <p  class="counter">{{countFavLit()}}</p>
+        </div>
+    </mat-card-footer>
+</mat-card>

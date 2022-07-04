@@ -1,0 +1,45 @@
+#home-page{
+    width: 100%;
+    height: 100%;
+}
+
+#home-page-landing{
+    height: 100%;
+    width: 100%;
+    background-color: #c8ae00;
+    color:white;
+}
+
+#roar-logo{
+    width: 400px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 2%;
+}
+#btn-started{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: #c8ae00;
+}
+@media only screen and (max-width: 480px) {
+    #roar-logo {
+        width: 50%;
+        height: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    #roar-logo {
+        width: 70%;
+        height: 70%;
+    }
+  }
+  @media only screen and (max-width: 1024px) {
+    #roar-logo {
+        width: 50%;
+        height: 70%;
+    }
+  }

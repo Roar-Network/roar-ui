@@ -1,0 +1,113 @@
+.icon-profile{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+}
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #c8a300;
+}
+.content,
+::ng-deep .mat-tab-label .mat-tab-label-content,
+mat-card,
+p {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  !important;
+}
+
+mat-card-header,
+mat-card-content,
+.d-center{
+    justify-content: center;
+}
+.mb-1{
+    margin-bottom: 1rem;
+}
+mat-card {
+    padding: 2rem;
+    width: 100%;
+    height: 80vh;
+}
+
+.d-flex{
+    display: flex !important;
+}
+.m-r-20px {
+    margin-right: 20px;
+}
+
+h3{
+    color: #c8a300;
+    font-size: 1.6rem;
+    font-family: "Lilita One", sans-serif;
+}
+h6{
+    font-size: 1rem;
+}
+
+mat-card-header{
+    margin-bottom: 1rem;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 1em;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c8a300; 
+  border-radius: 1em ; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #c8a300;
+} 
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar{
+    background-color: #c8a300 !important;
+}
+
+.meta-info {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+.meta-info > br
+{
+  width: 100%;
+  content: '';
+}
+
+.meta-data {
+    margin-bottom: 0;
+}
+.meta-data:first-child{
+    margin-top: .3rem;
+}
+.meta-data:last-child{
+    margin-bottom: .5rem;
+}
+.icon-profile,
+::ng-deep .mat-tab-label .mat-tab-label-content,
+.no-interact {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.content {
+    width: auto !important;
+    display: block;
+    justify-content: center;
+    height: 53vh !important;
+}
+.scroll {
+    margin:1rem 1rem;
+    padding:0.5rem 1rem;
+    width: fit-content;
+    height: 86%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+}
