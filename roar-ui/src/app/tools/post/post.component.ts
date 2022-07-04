@@ -50,21 +50,41 @@ export class PostComponent implements OnInit {
   
   onDelete(){
     // TODO: implement delete post
-    fetch(`http://${environment.IP}:${environment.port}/me/delete_post/${encodeURIComponent(this.postId)}`, {method: "DELETE"});
+    fetch(`http://${environment.IP}:${environment.port}/me/delete_post/${encodeURIComponent(this.postId)}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": localStorage.getItem("token") || ""
+      }
+    });
   }
 
   onLike(): void {
     console.log("like");
     if(this.fav)
-      fetch(`http://${environment.IP}:${environment.port}/me/unlike/${encodeURIComponent(this.postId)}`, {method: "PUT"});
+      fetch(`http://${environment.IP}:${environment.port}/me/unlike/${encodeURIComponent(this.postId)}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": localStorage.getItem("token") || ""
+        }
+      });
     else
-      fetch(`http://${environment.IP}:${environment.port}/me/like/${encodeURIComponent(this.postId)}`, {method: "PUT"})
+      fetch(`http://${environment.IP}:${environment.port}/me/like/${encodeURIComponent(this.postId)}`, {
+        method: "PUT",
+        headers: {
+          "Authorization": localStorage.getItem("token") || ""
+        }
+      })
 
     this.fav = !this.fav;
   }
   onShare(): void{
     console.log("share");
-    fetch(`http://${environment.IP}:${environment.port}/me/share/${encodeURIComponent(this.postId)}`, {method: "PUT"})
+    fetch(`http://${environment.IP}:${environment.port}/me/share/${encodeURIComponent(this.postId)}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": localStorage.getItem("token") || ""
+      }
+    })
     this.share = !this.share;
   }
 

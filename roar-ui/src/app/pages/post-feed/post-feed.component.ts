@@ -16,15 +16,18 @@ export class PostFeedComponent implements OnInit {
   alias: string = localStorage.getItem("alias") || "";
   username: string = localStorage.getItem("username") || "";
   feed: Post[] = [];
+  loading: boolean = true;
 
   constructor(private getter: UserInfoService) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.getFeeds();
     getIP();
   }
   getFeeds(){
     this.getter.getFeed().subscribe(p => this.feed = p);
+    this.loading = false;
   }
   
 
