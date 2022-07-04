@@ -67,85 +67,13 @@ export class UserComponent implements OnInit {
       // TODO: load data of user on init
 
       // * Load posts
-      fetch(`http://${environment.IP}:${environment.port}/${encodeURIComponent(this.alias)}/posts`,
-        {
-          method: "GET",
-          headers: {
-            "accept": "application/json"
-          }
-        }
-      )
-      .then(r => {
-        if (r.status == 200)
-          return r.json();
-        else return null;
-      })
-      .then(r => {
-        console.log();
-        // TODO save post in posts field
-        this.loadData+= 1;
-      })
-      .catch(e => {
-        this._snackBar.open("No connection to server!", "🚨", {
-          horizontalPosition: "start",
-          duration: 2000,
-          verticalPosition: "bottom"
-        });
-      });
+      this.getPosts();
 
       // * Load shares
-      fetch(`http://${environment.IP}:${environment.port}/${encodeURIComponent(this.alias)}/shares`,
-        {
-          method: "GET",
-          headers: {
-            "accept": "application/json"
-          }
-        }
-      )
-      .then(r => {
-        if (r.status == 200)
-          return r.json();
-        else return null;
-      })
-      .then(r => {
-        // TODO save shares in posts field
-        this.loadData+= 1;
-
-      })
-      .catch(e => {
-        this._snackBar.open("No connection to server!", "🚨", {
-          horizontalPosition: "start",
-          duration: 2000,
-          verticalPosition: "bottom"
-        });
-      });
+      this.getShares();
 
       // * Load likes
-      fetch(`http://${environment.IP}:${environment.port}/${encodeURIComponent(this.alias)}/likes`,
-      {
-        method: "GET",
-        headers: {
-          "accept": "application/json"
-        }
-      }
-    )
-    .then(r => {
-      if (r.status == 200)
-        return r.json();
-      else return null;
-    })
-    .then(r => {
-      // TODO save likes in posts field
-      this.loadData+= 1;
-
-    })
-    .catch(e => {
-      this._snackBar.open("No connection to server!", "🚨", {
-        horizontalPosition: "start",
-        duration: 2000,
-        verticalPosition: "bottom"
-      });
-    });
+      this.getLikes();
 
     // * Load followers
     this.getFollowers();
@@ -218,11 +146,23 @@ export class UserComponent implements OnInit {
   getFollowers(){
     this.getter.getFollowers(this.alias).subscribe(f => this.followers = f);
     this.loadData+= 1;
-
   }
+  getShares(){
+    this.getter.getShares(this.alias).subscribe(f => this.shares = f);
+    this.loadData+= 1;
+  }
+  getLikes() {
+    this.getter.getLikes(this.alias).subscribe(f => this.shares = f);
+    this.loadData+= 1;
+  }
+
   getFollowings(){
     this.getter.getFollowings(this.alias).subscribe(f => this.followings = f);
     this.loadData+= 1;
+  }
 
+  getPosts(){
+    this.getter.getPosts(this.alias).subscribe(p => this.posts = p);
+    this.loadData += 1;
   }
 }

@@ -3,7 +3,7 @@
     <mat-grid-tile [colspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
         <mat-card>
-            <div *ngIf="loadData <=5" style="display:flex; justify-content: center; padding-top: 5rem;" >
+            <div *ngIf="loadData < 5" style="display:flex; justify-content: center; padding-top: 5rem;" >
                 <mat-progress-spinner class="example-margin"
                     [color]="'#c8a300'"
                     [mode]="'indeterminate'"
@@ -11,7 +11,7 @@
                 </mat-progress-spinner>
                 <p style="margin-left: 1rem">Loading</p>
             </div>
-            <div  *ngIf="loadData > 5">
+            <div  *ngIf="loadData >= 5">
                 <mat-card-header>
                     <img  class="no-interact" draggable="false" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile"> 
                 </mat-card-header>
@@ -43,17 +43,18 @@
                                 <div class="scroll content">
                                     <p *ngIf="this.posts.length == 0">No posts yet 📝</p>
                                     <div *ngFor="let p of this.posts">
-                                        <!-- <post
-                                            [postId]="p['id']"
-                                            [author]="p['author']"
-                                            [text]="p['text']"
-                                            [username]="p['username']"
-                                            [date]="p['published']"
-                                            [countFav]="p['count_fav']"
-                                            [countComment]="p['count_comment']"
-                                            [countShare]="p['count_share']"
-                                        ></post> -->
-                                        a
+                                        <post
+                                            [postId]="p.id"
+                                            [author]="p.author"
+                                            [text]="p.text"
+                                            [username]="p.username"
+                                            [date]="p.date"
+                                            [countFav]="p.count_fav"
+                                            [countComment]="p.count_comment"
+                                            [countShare]="p.count_share"
+                                            [fav]="p.fav"
+                                            [share]="p.share"
+                                        ></post>
                                     </div>
                                 </div>
                             </mat-tab>
@@ -62,15 +63,16 @@
                                     <p *ngIf="this.shares.length == 0">No shares yet 🔁</p>
                                     <div *ngFor="let p of this.shares">
                                         <post
-                                            [postId]="p['id']"
-                                            [author]="p['author']"
-                                            [text]="p['text']"
-                                            [username]="p['username']"
-                                            [date]="p['published']"
-                                            [countFav]="p['count_fav']"
-                                            [countComment]="p['count_comment']"
-                                            [countShare]="p['count_share']"
-                                            [share]="true"
+                                        [postId]="p.id"
+                                        [author]="p.author"
+                                        [text]="p.text"
+                                        [username]="p.username"
+                                        [date]="p.date"
+                                        [countFav]="p.count_fav"
+                                        [countComment]="p.count_comment"
+                                        [countShare]="p.count_share"
+                                        [fav]="p.fav"
+                                        [share]="true"
                                         ></post>
                                     </div>
                                 </div>
@@ -80,15 +82,16 @@
                                     <p *ngIf="this.likes.length == 0">No likes yet ❤️</p>
                                     <div *ngFor="let p of this.likes">
                                         <post
-                                            [postId]="p['id']"
-                                            [author]="p['author']"
-                                            [text]="p['text']"
-                                            [username]="p['username']"
-                                            [date]="p['published']"
-                                            [countFav]="p['count_fav']"
-                                            [countComment]="p['count_comment']"
-                                            [countShare]="p['count_share']"
-                                            [share]="true"
+                                            [postId]="p.id"
+                                            [author]="p.author"
+                                            [text]="p.text"
+                                            [username]="p.username"
+                                            [date]="p.date"
+                                            [countFav]="p.count_fav"
+                                            [countComment]="p.count_comment"
+                                            [countShare]="p.count_share"
+                                            [fav]="true"
+                                            [share]="p.share"
                                         ></post>
                                     </div>
                                 </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { formatDate, getNumberLiteral } from '../format-data';
 
@@ -49,14 +50,21 @@ export class PostComponent implements OnInit {
   
   onDelete(){
     // TODO: implement delete post
+    fetch(`http://${environment.IP}:${environment.port}/me/delete_post/${encodeURIComponent(this.postId)}`, {method: "DELETE"});
   }
 
   onLike(): void {
     console.log("like");
+    if(this.fav)
+      fetch(`http://${environment.IP}:${environment.port}/me/unlike/${encodeURIComponent(this.postId)}`, {method: "PUT"});
+    else
+      fetch(`http://${environment.IP}:${environment.port}/me/like/${encodeURIComponent(this.postId)}`, {method: "PUT"})
+
     this.fav = !this.fav;
   }
   onShare(): void{
     console.log("share");
+    fetch(`http://${environment.IP}:${environment.port}/me/share/${encodeURIComponent(this.postId)}`, {method: "PUT"})
     this.share = !this.share;
   }
 

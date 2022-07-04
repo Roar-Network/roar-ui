@@ -3,176 +3,20 @@
         <mat-grid-tile [colspan]="3"></mat-grid-tile>
         <mat-grid-tile [colspan]="6">
             <div class="scroll">
-                <post
-                    [postId]="'da123'"
-                    [author]="'cts_crypto'" 
-                    [username]="'Carlos Toledo'"
-                    [date]="'2022-06-23 01:14:54.414467'"
-                    [countFav]="2"
-                    [countComment]="2"
-                    [countShare]="23"
-                    [category]="1"
-                >
-                </post>
-                
-                <post
-                    [postId]="'d'" 
-                    [author]="'atp_ariel'" 
-                    [username]="'Ariel Triana'"
-                    [date]="'2020-06-23 01:14:54.414467'"
-                    [countFav]="8123"
-                    [countComment]="0"
-                    [countShare]="2312"
-                    [category]="5"
-                >
-                </post>
-                <post
-                    [postId]="'da'" 
-                    [author]="'rocioog'"
-                    [username]="'Rocio'" 
-                    [date]="'2022-06-24 13:31:01.414467'"
-                    [countFav]="10"
-                    [countComment]="1"
-                    [countShare]="3"
-                    [fav]="true"
-                    [category]="7"
-                >
-                </post>
-                <post
-                    [postId]="'asd'" 
-                    [author]="'SusanVC97'" 
-                    [username]="'Susanny Vega'"
-                    [date]="'2022-06-26 10:03:01.414467'"
-                    [countFav]="4323252"
-                    [countComment]="13323252"
-                    [countShare]="123"
-                    [share]="true"
-                >
-                </post>
-                <post
-                    [postId]="'31'" 
-                    [author]="'rocioog'" 
-                    [username]="'Rocio'"
-                    [date]="'2022-06-10 13:31:01.414467'"
-                    [countFav]="13023252"
-                    [countComment]="1"
-                    [countShare]="3"
-                    [category]="7"
-                >
-                </post><post
-                [postId]="'da123'"
-                [author]="'cts_crypto'" 
-                [username]="'Carlos Toledo'"
-                [date]="'2022-06-23 01:14:54.414467'"
-                [countFav]="2"
-                [countComment]="2"
-                [countShare]="23"
-                [category]="1"
-            >
-            </post>
-            
-            <post
-                [postId]="'d'" 
-                [author]="'atp_ariel'" 
-                [username]="'Ariel Triana'"
-                [date]="'2020-06-23 01:14:54.414467'"
-                [countFav]="8123"
-                [countComment]="0"
-                [countShare]="2312"
-                [category]="5"
-            >
-            </post>
-            <post
-                [postId]="'da'" 
-                [author]="'rocioog'"
-                [username]="'Rocio'" 
-                [date]="'2022-06-24 13:31:01.414467'"
-                [countFav]="10"
-                [countComment]="1"
-                [countShare]="3"
-                [fav]="true"
-                [category]="7"
-            >
-            </post>
-            <post
-                [postId]="'asd'" 
-                [author]="'SusanVC97'" 
-                [username]="'Susanny Vega'"
-                [date]="'2022-06-26 10:03:01.414467'"
-                [countFav]="4323252"
-                [countComment]="13323252"
-                [countShare]="123"
-                [share]="true"
-            >
-            </post>
-            <post
-                [postId]="'31'" 
-                [author]="'rocioog'" 
-                [username]="'Rocio'"
-                [date]="'2022-06-10 13:31:01.414467'"
-                [countFav]="13023252"
-                [countComment]="1"
-                [countShare]="3"
-                [category]="7"
-            >
-            </post><post
-                    [postId]="'da123'"
-                    [author]="'cts_crypto'" 
-                    [username]="'Carlos Toledo'"
-                    [date]="'2022-06-23 01:14:54.414467'"
-                    [countFav]="2"
-                    [countComment]="2"
-                    [countShare]="23"
-                    [category]="1"
-                >
-                </post>
-                
-                <post
-                    [postId]="'d'" 
-                    [author]="'atp_ariel'" 
-                    [username]="'Ariel Triana'"
-                    [date]="'2020-06-23 01:14:54.414467'"
-                    [countFav]="8123"
-                    [countComment]="0"
-                    [countShare]="2312"
-                    [category]="5"
-                >
-                </post>
-                <post
-                    [postId]="'da'" 
-                    [author]="'rocioog'"
-                    [username]="'Rocio'" 
-                    [date]="'2022-06-24 13:31:01.414467'"
-                    [countFav]="10"
-                    [countComment]="1"
-                    [countShare]="3"
-                    [fav]="true"
-                    [category]="7"
-                >
-                </post>
-                <post
-                    [postId]="'asd'" 
-                    [author]="'SusanVC97'" 
-                    [username]="'Susanny Vega'"
-                    [date]="'2022-06-26 10:03:01.414467'"
-                    [countFav]="4323252"
-                    [countComment]="13323252"
-                    [countShare]="123"
-                    [share]="true"
-                >
-                </post>
-                <post
-                    [postId]="'31'" 
-                    [author]="'rocioog'" 
-                    [username]="'Rocio'"
-                    [date]="'2022-06-10 13:31:01.414467'"
-                    [countFav]="13023252"
-                    [countComment]="1"
-                    [countShare]="3"
-                    [category]="7"
-                >
-                </post>
-            
+                <div *ngFor="let p of this.feed">
+                    <post
+                        [postId]="p.id"
+                        [author]="p.author"
+                        [text]="p.text"
+                        [username]="p.username"
+                        [date]="p.date"
+                        [countFav]="p.count_fav"
+                        [countComment]="p.count_comment"
+                        [countShare]="p.count_share"
+                        [fav]="p.fav"
+                        [share]="p.share"
+                    ></post>
+                </div>
             </div>
         </mat-grid-tile>
         <mat-grid-tile [colspan]="3"></mat-grid-tile>
