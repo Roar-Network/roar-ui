@@ -21,6 +21,8 @@ User interface to Roar Social Network
 
 ## Contributors
 
+Before contribute, check the contribution guide [here](https://github.com/Roar-Network/roar-ui/blob/main/CONTRIBUTING.md)
+
 <table align="center">
    <tr>
        <td align="center">
