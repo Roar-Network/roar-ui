@@ -17,6 +17,15 @@
   background: #c8ae00;
 } 
 
+::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #c8a300 !important;
+}
+
+.example-margin{
+    padding-top: .3rem;
+    margin-left: 1rem;
+}
+
 .scroll {
     margin:1rem 1rem;
     padding:0.5rem 1rem;

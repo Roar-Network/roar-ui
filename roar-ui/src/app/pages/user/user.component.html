@@ -3,15 +3,15 @@
     <mat-grid-tile [colspan]="1"></mat-grid-tile>
     <mat-grid-tile [colspan]="4">
         <mat-card>
-            <div *ngIf="loadData < 5" style="display:flex; justify-content: center; padding-top: 5rem;" >
-                <mat-progress-spinner class="example-margin"
+            <div *ngIf="loadData < 6" style="display:flex; justify-content: center; padding-top: 5rem;" >
+                <mat-progress-spinner
                     [color]="'#c8a300'"
                     [mode]="'indeterminate'"
                     [diameter]="30">
                 </mat-progress-spinner>
-                <p style="margin-left: 1rem">Loading</p>
+                <p  class="example-margin">Loading</p>
             </div>
-            <div  *ngIf="loadData >= 5">
+            <div  *ngIf="loadData >= 6">
                 <mat-card-header>
                     <img  class="no-interact" draggable="false" src="https://i.pravatar.cc/150?u={{alias}}" class="icon-profile" alt="img of profile"> 
                 </mat-card-header>
@@ -54,6 +54,7 @@
                                             [countShare]="p.count_share"
                                             [fav]="p.fav"
                                             [share]="p.share"
+                                            [category]="p.category"
                                         ></post>
                                     </div>
                                 </div>
@@ -73,6 +74,7 @@
                                         [countShare]="p.count_share"
                                         [fav]="p.fav"
                                         [share]="true"
+                                        [category]="p.category"
                                         ></post>
                                     </div>
                                 </div>
@@ -91,6 +93,7 @@
                                             [countComment]="p.count_comment"
                                             [countShare]="p.count_share"
                                             [fav]="true"
+                                            [category]="p.category"
                                             [share]="p.share"
                                         ></post>
                                     </div>
@@ -103,6 +106,7 @@
                                         <user-item
                                             [username]="u.username"
                                             [alias]="u.alias"
+                                            [following]="u.isFollowing"
                                         ></user-item>
                                     </div>
                                 </div>
@@ -114,6 +118,7 @@
                                         <user-item
                                             [username]="u.username"
                                             [alias]="u.alias"
+                                            [following]="u.isFollowing"
                                         ></user-item>
                                     </div>
                                 </div>

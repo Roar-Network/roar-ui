@@ -14,7 +14,7 @@ export class CreatePostComponent implements OnInit {
   @Input() reply: string = "";
   @Input() replyToAlias: string = "";
   @Output() public onClose = new EventEmitter();
-  current_usr: UserInfo = {alias: localStorage.getItem("alias") || "", username: localStorage.getItem("username") || ""};
+  current_usr: UserInfo = {alias: localStorage.getItem("alias") || "", username: localStorage.getItem("username") || "", isFollowing: false};
   isDarkTheme: boolean = localStorage.getItem("dark-theme") == "y" || false;
 
   constructor(private router: Router, private _snackBar: MatSnackBar) 

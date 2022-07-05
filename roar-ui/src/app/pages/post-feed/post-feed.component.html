@@ -4,12 +4,12 @@
         <mat-grid-tile [colspan]="6">
             <div class="scroll">
                 <div *ngIf="loading" style="display: flex; ">
-                    <mat-progress-spinner class="example-margin"
+                    <mat-progress-spinner 
                         [color]="'#c8a300'"
                         [mode]="'indeterminate'"
                         [diameter]="30">
                     </mat-progress-spinner>
-                    <p>Loading feed</p>
+                    <p class="example-margin">Loading feed</p>
                 </div>
                 <div *ngIf="!loading && this.feed.length == 0">No post to show, start to follow someone.</div>
                 <div *ngFor="let p of this.feed">
@@ -24,6 +24,7 @@
                         [countShare]="p.count_share"
                         [fav]="p.fav"
                         [share]="p.share"
+                        [category]="p.category"
                     ></post>
                 </div>
             </div>

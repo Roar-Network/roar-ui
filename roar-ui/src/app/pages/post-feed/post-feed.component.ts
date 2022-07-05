@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { UserInfoService } from 'src/app/service/user-info.service';
-import { CreatePostComponent } from 'src/app/tools/create-post/create-post.component';
-import {getIP}  from 'src/app/tools/system-network';
-import {Post} from 'src/app/tools/post';
+import { getIP }  from 'src/app/tools/system-network';
+import { Post } from 'src/app/tools/post';
+import { interval } from "rxjs";
+
 
 @Component({
   selector: 'app-post-feed',
@@ -26,9 +25,19 @@ export class PostFeedComponent implements OnInit {
     getIP();
   }
   getFeeds(){
-    this.getter.getFeed().subscribe(p => this.feed = p);
-    this.loading = false;
+    this.getter.getFeed().subscribe(p =>
+      {
+        this.feed = p
+        this.loading = false;
+      }
+    );
+    interval(15000).subscribe(() => {
+      this.getter.getFeed().subscribe(p =>
+        {
+          this.feed = p
+          this.loading = false;
+        }
+      );
+    });
   }
-  
-
 }

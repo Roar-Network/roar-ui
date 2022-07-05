@@ -15,13 +15,13 @@ export class CategoryComponent implements OnInit {
   }
 
   getIconText(): string {
-    if(this.index == -1 || this.index >= this.icons.length)
+    if(this.index == -1 || this.index > this.icons.length)
       return "";
-    return this.icons[this.index];
+    return this.icons[this.index -1];
   }
   getText(): string {
-    if(this.index == -1 || this.index >= this.texts.length)
+    if(this.index == -1 || this.index > this.texts.length)
       return "";
-    return this.texts[this.index];
+    return this.texts[this.index-1];
   }
 }

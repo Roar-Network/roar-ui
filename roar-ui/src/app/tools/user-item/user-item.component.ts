@@ -18,11 +18,11 @@ export class UserItemComponent implements OnInit {
   
   constructor(private _snackBar: MatSnackBar) 
   {
-    this.usr = {alias: this.alias, username: this.username};
+    this.usr = {alias: this.alias, username: this.username, isFollowing: this.following};
   }
 
   ngOnInit(): void {
-    this.usr = {alias: this.alias, username: this.username};
+    this.usr = {alias: this.alias, username: this.username, isFollowing: this.following};
     console.log(this.usr);
   }
 

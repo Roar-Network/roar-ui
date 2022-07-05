@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { interval, Observable } from 'rxjs';
 import { UserInfoService } from 'src/app/service/user-info.service';
 import { getNumberLiteral } from 'src/app/tools/format-data'
 import { UserInfo } from 'src/app/tools/user-info';
@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
   count_followers = () => getNumberLiteral(this.followers.length);
   count_followings = () => getNumberLiteral(this.followings.length);
   tabSelected: number = 0;
-  loadData: number = 0;
+  loadData: number = this.isMe ? 1: 0;
 
   constructor(private routes: ActivatedRoute, private router: Router, private _snackBar: MatSnackBar, private getter: UserInfoService) 
   {  }
@@ -51,7 +51,14 @@ export class UserComponent implements OnInit {
         this.username = localStorage.getItem("username") || "";
       else{
         // fetch username
-        fetch(`http://${environment.IP}:${environment.port}/` + encodeURIComponent(this.alias) + "/info")
+        fetch(`http://${environment.IP}:${environment.port}/` + encodeURIComponent(this.alias) + "/info",
+          {
+            method: "GET",
+            headers: {
+              "Authorization": `${localStorage.getItem("token")}`
+            }
+          }
+        )
           .then(r => {
             if(r.status == 404)
               this.router.navigate(["/404"]);
@@ -59,12 +66,13 @@ export class UserComponent implements OnInit {
           })
           .then(r => {
             this.username = r.username;
+            this.isFollowing = r.isFollowing;
           }).catch(e => {
             console.log(e);
-          })
+          });
       }
+
       this.loadData += 1;
-      // TODO: load data of user on init
 
       // * Load posts
       this.getPosts();
@@ -75,11 +83,11 @@ export class UserComponent implements OnInit {
       // * Load likes
       this.getLikes();
 
-    // * Load followers
-    this.getFollowers();
+      // * Load followers
+      this.getFollowers();
 
-    // * Load followings
-    this.getFollowings();
+      // * Load followings
+      this.getFollowings();
   })
   }
 
@@ -144,25 +152,65 @@ export class UserComponent implements OnInit {
   }
 
   getFollowers(){
-    this.getter.getFollowers(this.alias).subscribe(f => this.followers = f);
-    this.loadData+= 1;
+    this.getter.getFollowers(this.alias).subscribe(f => {
+      this.followers = f
+      this.loadData+= 1;
+    });
+    interval(30000).subscribe(() => {
+      this.getter.getFollowers(this.alias).subscribe(f => {
+        this.followers = f
+        this.loadData+= 1;
+      });
+    });
   }
   getShares(){
-    this.getter.getShares(this.alias).subscribe(f => this.shares = f);
-    this.loadData+= 1;
+    this.getter.getShares(this.alias).subscribe(f => {
+      this.shares = f;
+      this.loadData+= 1;
+    });
+    interval(30000).subscribe(() => {
+      this.getter.getShares(this.alias).subscribe(f => {
+        this.shares = f;
+        this.loadData+= 1;
+      });
+    });
   }
   getLikes() {
-    this.getter.getLikes(this.alias).subscribe(f => this.shares = f);
-    this.loadData+= 1;
+    this.getter.getLikes(this.alias).subscribe(f => {
+      this.likes = f
+      this.loadData+= 1;
+    });
+    interval(30000).subscribe(() => {
+      this.getter.getLikes(this.alias).subscribe(f => {
+        this.likes = f
+        this.loadData+= 1;
+      });
+    });
   }
 
   getFollowings(){
-    this.getter.getFollowings(this.alias).subscribe(f => this.followings = f);
-    this.loadData+= 1;
+    this.getter.getFollowings(this.alias).subscribe(f => {
+      this.followings = f
+      this.loadData+= 1;
+    });
+    interval(30000).subscribe(() => {
+      this.getter.getFollowings(this.alias).subscribe(f => {
+        this.followings = f
+        this.loadData+= 1;
+      });
+    });
   }
 
   getPosts(){
-    this.getter.getPosts(this.alias).subscribe(p => this.posts = p);
-    this.loadData += 1;
+    this.getter.getPosts(this.alias).subscribe(p => {
+      this.posts = p
+      this.loadData += 1;
+    });
+    interval(30000).subscribe(() => {
+      this.getter.getPosts(this.alias).subscribe(p => {
+        this.posts = p
+        this.loadData += 1;
+      });
+    });
   }
 }

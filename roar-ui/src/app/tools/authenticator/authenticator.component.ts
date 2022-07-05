@@ -119,7 +119,8 @@ export class AuthenticatorComponent implements OnInit {
           fetch(`http://${environment.IP}:${environment.port}/${alias}/info`, {
             method: "GET",
             headers: {
-              "accept": "application/json",
+              "Accept": "application/json",
+              "Authorization": `${localStorage.getItem("token")}`
             }
           })
           .then(r => r.json())

@@ -4,13 +4,19 @@
     border-radius: 50%;
 }
 ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
-    stroke: #c8a300;
+    stroke: #c8a300 !important;
 }
+
 .content,
 ::ng-deep .mat-tab-label .mat-tab-label-content,
 mat-card,
 p {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif  !important;
+}
+
+.example-margin{
+    padding-top: .3rem;
+    margin-left: 1rem;
 }
 
 mat-card-header,
